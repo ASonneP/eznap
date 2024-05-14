@@ -1,38 +1,35 @@
-# Development Stage
-FROM node:alpine AS development
+FROM node:alpine As development
 
 WORKDIR /usr/src/app
 
-# Install pnpm globally
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+COPY tsconfig.json tsconfig.json
+COPY nest-cli.json nest-cli.json
+
 RUN npm install -g pnpm
 
-# Copy package files and install dependencies
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
-# Copy the rest of the application code
-COPY . .
+COPY apps/reservations apps/reservations
+COPY libs libs
 
-# Build the application
-RUN pnpm run build
+RUN pnpm run build reservations
 
-# Production Stage
-FROM node:alpine AS production
+FROM node:alpine as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-# Install pnpm globally
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+
 RUN npm install -g pnpm
 
-# Copy only necessary files for production
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --prod --frozen-lockfile
+RUN pnpm install --prod
 
-# Copy built files from development stage
 COPY --from=development /usr/src/app/dist ./dist
 
-# Command to run the application
 CMD ["node", "dist/apps/reservations/main"]
