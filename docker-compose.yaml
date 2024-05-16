@@ -11,8 +11,7 @@ services:
       - '3000:3000'
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
-
+      - node_modules:/usr/src/app/node_modules
   auth:
     build:
       context: .
@@ -25,7 +24,7 @@ services:
       - '3001:3001'
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - node_modules:/usr/src/app/node_modules
   payments:
     build:
       context: .
@@ -34,10 +33,11 @@ services:
     command: pnpm run start:dev payments
     env_file:
       - ./apps/payments/.env
-    ports:
-      - '3003:3003'
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - node_modules:/usr/src/app/node_modules
   mongo:
     image: mongo
+
+volumes:
+  node_modules:
