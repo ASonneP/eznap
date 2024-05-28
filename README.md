@@ -18,6 +18,10 @@ EZNap is a demo backend API microservices project designed to create an account 
 - [Installation](#installation)
 - [Running the Project](#running-the-project)
   - [With Docker](#with-docker)
+- [API Reference](#api-reference)
+  - [Register](#register)
+  - [Login](#login)
+  - [Create Reservation Payment](#create-reservation-payment)
 
 ## Installation
 
@@ -53,4 +57,54 @@ Docker simplifies running the application by containerizing it. Ensure you have 
 
 2. **Access the application:**
     The API should be running on `http://localhost:3000` (or the port you have configured).
+
+
+
+## API Reference
+
+### Register
+
+```http
+  POST http://localhost:3001/users
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required**. Your email |
+| `password` | `string` | **Required**. Your password |
+
+### Login
+
+```http
+  POST http://localhost:3001/auth/login
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email` | `string` | **Required**. Your email |
+| `password` | `string` | **Required**. Your password |
+
+### Create Reservation Payment
+**Note: This endpoint requires the user to be signed in.**
+```http
+  POST http://localhost:3000/reservations
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `user_id`              | `string` | **Required**. Id of the user                |
+| `item_id`              | `string` | **Required**. Id of the item to reserve     |
+| `startDate`            | `string` | **Required**. Start date of the reservation (MM/DD/YYYY) |
+| `endDate`              | `string` | **Required**. End date of the reservation (MM/DD/YYYY)   |
+| `placeId`              | `string` | **Required**. Id of the place               |
+| `invoiceId`            | `string` | **Required**. Id of the invoice             |
+| `charge`               | `object` | **Required**. Charge details                |
+| `charge.amount`        | `number` | **Required**. Amount to be charged          |
+| `charge.card`          | `object` | **Required**. Card details                  |
+| `charge.card.cvc`      | `string` | **Required**. Card CVC                      |
+| `charge.card.exp_month`| `number` | **Required**. Card expiration month         |
+| `charge.card.exp_year` | `number` | **Required**. Card expiration year          |
+| `charge.card.number`   | `string` | **Required**. Card number                   |
+
+
 
