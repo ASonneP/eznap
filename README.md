@@ -21,6 +21,8 @@ EZNap is a demonstration backend API microservices project aimed at facilitating
   - [Register](#register)
   - [Login](#login)
   - [Create Reservation Payment](#create-reservation-payment)
+  - [Get All Reservation Transactions](#get-all-reservation-transactions)
+  - [Get Specific Reservation Transaction](#get-specific-reservation-transaction)
 
 ## Installation
 
