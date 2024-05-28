@@ -84,6 +84,15 @@ Docker simplifies running the application by containerizing it. Ensure you have 
 | `email` | `string` | **Required**. Your email |
 | `password` | `string` | **Required**. Your password |
 
+### Logout
+
+```http
+  POST http://localhost:3001/auth/logout
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| None | - | This endpoint does not require any parameters. |
+
 ### Create Reservation Payment
 **Note: This endpoint requires the user to be signed in.**
 ```http
