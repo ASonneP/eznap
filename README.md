@@ -3,12 +3,21 @@
 
 EZNap is a demo backend API microservices project designed to create an account and make reservations for hotels, rooms, or other services. This project uses NestJS and MongoDB, and it is containerized using Docker.
 
+## Tech Stack
+
+**Client:** N/A (Backend Project)
+
+**Server:** Node.js, NestJS
+
+**Database:** MongoDB
+
+**Containerization:** Docker, Docker Compose
+
 ## Table of Contents
 
 - [Installation](#installation)
 - [Running the Project](#running-the-project)
   - [With Docker](#with-docker)
-- [Project Structure](#project-structure)
 
 ## Installation
 
