@@ -19,6 +19,13 @@ export class AuthController {
     await this.authService.login(user, response);
     response.send(user);
   }
+
+  @Post('logout')
+  async logout(@Res({ passthrough: true }) response: Response) {
+    await this.authService.logout(response);
+    response.send({ message: 'Logged out successfully' });
+  }
+
   @UseGuards(JwtAuthGuard)
   @MessagePattern('authenticate')
   async authenticate(@Payload() data: any) {
