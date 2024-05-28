@@ -117,3 +117,23 @@ Docker simplifies running the application by containerizing it. Ensure you have 
 | `charge.card.exp_month` | `number` | **Required**. Card expiration month                      |
 | `charge.card.exp_year`  | `number` | **Required**. Card expiration year                       |
 | `charge.card.number`    | `string` | **Required**. Card number                                |
+
+### Get All Reservation Transactions
+**Note: This endpoint requires the user to be signed in.**
+```http
+  GET http://localhost:3000/reservations
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| None | - | This endpoint does not require any parameters. |
+
+### Get Specific Reservation Transaction
+**Note: This endpoint requires the user to be signed in.**
+```http
+  GET http://localhost:3000/reservations/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Required. ID of the reservation to fetch |
